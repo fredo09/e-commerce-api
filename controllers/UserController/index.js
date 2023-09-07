@@ -3,6 +3,7 @@
  */
 
 import User from "./../../models/User/index.js";
+import bycript from "bcryptjs";
 
 /**
  *  Register New User
@@ -27,12 +28,13 @@ export const resgisterUserCrt = async (req, res) => {
     });
   }
 
-  //TODO: hash password
+  const salt = await bycript.genSalt(10);
+  const hashPassword = await bycript.hash(password, salt);
 
   const createUser = await User.create({
     fullname,
     email: userLowerCase,
-    password,
+    password: hashPassword,
   });
 
   res.status(201).send({
