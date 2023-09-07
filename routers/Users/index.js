@@ -3,7 +3,7 @@
  */
 
 import express from "express";
-import { resgisterUserCrt } from "./../../controllers/UserController/index.js";
+import { resgisterUserCrt } from "./../../controllers/index.js";
 
 const api = express();
 
