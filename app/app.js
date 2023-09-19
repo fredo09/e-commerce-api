@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 
 //Errors
-app.use(erroPathNotFound);
+//app.use(erroPathNotFound);
 
 app.use(`/api/${process.env.API_VERSION}`, rootPatsh);
 

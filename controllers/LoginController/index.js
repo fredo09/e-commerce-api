@@ -4,6 +4,8 @@
 
 import User from "./../../models/User/index.js";
 import byscrypt from "bcryptjs";
+import asyncHandler from "express-async-handler";
+import { generateToken, getToken } from "./../../utils/index.js";
 
 /**
  *  Login user
@@ -49,6 +51,7 @@ export const LoginCtr = async (req, res) => {
     }
 
     //TODO: REALIZAMOS EL TOKEN PARA USUARIO LOGEADO
+    const token = generateToken(userFound);
 
     //Login
     res.status(200).send({
@@ -56,6 +59,25 @@ export const LoginCtr = async (req, res) => {
       code: 201,
       message: "Usuario loggeado",
       user: userFound,
+      token,
     });
   }
+};
+
+/**
+ * @desc Get user profile
+ * @router GET /api/v1/profile
+ * @access Private
+ */
+
+export const getUserProfile = (req, res) => {
+  const token = getToken(req);
+
+  //find the user
+  //const user = await User.findById(req.userAuthId).populate("orders");
+  res.json({
+    status: "success",
+    message: "User profile fetched successfully",
+    token,
+  });
 };

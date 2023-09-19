@@ -13,6 +13,7 @@ import bycript from "bcryptjs";
  **/
 
 export const resgisterUserCrt = async (req, res) => {
+  console.log(req.body);
   const { fullname, email, password } = req.body;
 
   let userLowerCase = email.toLowerCase();

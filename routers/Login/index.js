@@ -3,11 +3,12 @@
  */
 
 import express from "express";
-import { LoginCtr } from "./../../controllers/index.js";
+import { LoginCtr, getUserProfile } from "./../../controllers/index.js";
 
 const api = express();
 
 //Login Path
-api.post("/signIn", LoginCtr);
+api.post("/users/signIn", LoginCtr);
+api.get("/users/profile", getUserProfile);
 
 export default api;
